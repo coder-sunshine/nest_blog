@@ -9,5 +9,6 @@ export class UserController {
   @Post("register")
   async register(@Body() user: RegisterDto) {
     await this.userService.register(user);
+    return "注册成功";
   }
 }
