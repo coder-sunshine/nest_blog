@@ -4,6 +4,7 @@ import { hash, verify } from "argon2";
 import { PrismaService } from "@/prisma/prisma.service";
 import CreateDto from "./dto/create.dto";
 import { JwtService } from "@nestjs/jwt";
+import { ResultData } from "@/utils/result";
 
 @Injectable()
 export class UserService {
@@ -15,12 +16,13 @@ export class UserService {
 
   async register(dto: RegisterDto) {
     const password = await hash(dto.password);
-    return await this.prisma.user.create({
+    await this.prisma.user.create({
       data: {
         name: dto.name,
         password
       }
     });
+    return ResultData.success();
   }
 
   async login(dto: CreateDto) {
@@ -34,7 +36,8 @@ export class UserService {
       throw new BadRequestException("密码输入错误");
     }
 
-    return await this.getToken(user);
+    const token = await this.getToken(user);
+    return ResultData.success(token);
   }
 
   private async getToken({ id, name }) {
