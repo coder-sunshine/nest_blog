@@ -20,13 +20,13 @@ async function run() {
     }
   });
 
-  // for (let i = 1; i <= 5; i++) {
-  //   await prisma.category.create({
-  //     data: {
-  //       title: Random.ctitle(3, 6)
-  //     }
-  //   });
-  // }
+  for (let i = 1; i <= 5; i++) {
+    // await prisma.category.create({
+    //   data: {
+    //     title: Random.ctitle(3, 6)
+    //   }
+    // });
+  }
 
   // for (let i = 1; i <= 5; i++) {
   //   await prisma.tag.create({

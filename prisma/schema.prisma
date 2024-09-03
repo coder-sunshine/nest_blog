@@ -22,11 +22,24 @@ model User {
 }
 
 model Article {
+  id         Int      @id @default(autoincrement()) @db.UnsignedInt
+  title      String
+  content    String   @db.Text
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  category   Category @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  categoryId Int      @db.UnsignedInt
+
+  @@map("article")
+}
+
+model Category {
   id        Int      @id @default(autoincrement()) @db.UnsignedInt
   title     String
-  content   String   @db.Text
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  @@map("article")
+  articles Article[]
+
+  @@map("category")
 }

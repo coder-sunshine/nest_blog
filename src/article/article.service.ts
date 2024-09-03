@@ -30,7 +30,7 @@ export class ArticleService {
       take: size,
       orderBy: [
         {
-          createdAt: "desc"
+          createdAt: "asc"
         }
       ]
     });

@@ -6,4 +6,7 @@ export class CreateArticleDto {
 
   @IsNotEmpty({ message: "文章内容不能为空" })
   content: string;
+
+  @IsNotEmpty({ message: "文章分类不能为空" })
+  categoryId: number;
 }
