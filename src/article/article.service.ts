@@ -14,12 +14,12 @@ export class ArticleService {
   private readonly configService: ConfigService;
 
   async create(createArticleDto: CreateArticleDto) {
-    await this.prisma.article.create({
+    const result = await this.prisma.article.create({
       data: {
         ...createArticleDto
       }
     });
-    return ResultData.success();
+    return ResultData.success(result);
   }
 
   async findAll(page: number = 1, pageSize: number) {
@@ -64,7 +64,7 @@ export class ArticleService {
   }
 
   async update(id: number, updateArticleDto: UpdateArticleDto) {
-    await this.prisma.article.update({
+    const result = await this.prisma.article.update({
       where: {
         id
       },
@@ -72,7 +72,7 @@ export class ArticleService {
         ...updateArticleDto
       }
     });
-    return ResultData.success();
+    return ResultData.success(result);
   }
 
   async remove(id: number) {

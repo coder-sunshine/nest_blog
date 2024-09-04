@@ -1,6 +1,6 @@
 import { PrismaClient } from "@prisma/client";
 import { hash } from "argon2";
-// import { random } from "lodash-es";
+import _ from "lodash";
 import { Random } from "mockjs";
 
 const prisma = new PrismaClient();
@@ -21,11 +21,11 @@ async function run() {
   });
 
   for (let i = 1; i <= 5; i++) {
-    // await prisma.category.create({
-    //   data: {
-    //     title: Random.ctitle(3, 6)
-    //   }
-    // });
+    await prisma.category.create({
+      data: {
+        title: Random.ctitle(3, 6)
+      }
+    });
   }
 
   // for (let i = 1; i <= 5; i++) {
@@ -41,7 +41,8 @@ async function run() {
     await prisma.article.create({
       data: {
         title: Random.ctitle(10, 30),
-        content: Random.cparagraph(30, 50)
+        content: Random.cparagraph(30, 50),
+        categoryId: _.random(1, 5)
         // categoryId: random(1, 5),
         // comments: random(20, 50),
         // viewCount: random(10, 50),
