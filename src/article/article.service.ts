@@ -16,7 +16,8 @@ export class ArticleService {
   async create(createArticleDto: CreateArticleDto) {
     const result = await this.prisma.article.create({
       data: {
-        ...createArticleDto
+        ...createArticleDto,
+        categoryId: +createArticleDto.categoryId
       }
     });
     return ResultData.success(result);
